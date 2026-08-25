@@ -1,0 +1,4 @@
+ecb87fa7eb10cd9b0336c6402e9bc058cad177766eaf0a165e454d0e0adff234  mikicaChessEngine-v0.3.0-linux-x86_64-generic.tar.gz
+84fdc1925b22a8bd7f7c02c4b95d5c9af1c3cd8c882e812098fefb829affeaa2  mikicaChessEngine-v0.3.0-linux-x86_64-haswell.tar.gz
+93784a05aadeaf14e8e40b8c286d47b9b2986e007cc029e6deb1941df56afe4d  mikicaChessEngine-v0.3.0-windows-x86_64-generic.zip
+a8ce16336172dbbc44ddf2f4ccea1d64dda1a71945f5dd182afe06063a76065c  mikicaChessEngine-v0.3.0-windows-x86_64-haswell.zip

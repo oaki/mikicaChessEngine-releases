@@ -1,0 +1,40 @@
+name: Publish binary release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Verify staged release
+        shell: bash
+        run: |
+          set -euo pipefail
+          RELEASE_DIR="releases/${GITHUB_REF_NAME}"
+          test -f "${RELEASE_DIR}/RELEASE-NOTES.md"
+          test -f "${RELEASE_DIR}/SHA256SUMS.txt"
+          test "$(find "${RELEASE_DIR}" -maxdepth 1 -type f \( -name '*.tar.gz' -o -name '*.zip' \) | wc -l)" -eq 4
+          (cd "${RELEASE_DIR}" && sha256sum --check SHA256SUMS.txt)
+      - name: Create public GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          RELEASE_DIR="releases/${GITHUB_REF_NAME}"
+          gh release create "${GITHUB_REF_NAME}" \
+            "${RELEASE_DIR}"/*.tar.gz \
+            "${RELEASE_DIR}"/*.zip \
+            "${RELEASE_DIR}/SHA256SUMS.txt" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --verify-tag \
+            --latest \
+            --title "mikicaChessEngine ${GITHUB_REF_NAME}" \
+            --notes-file "${RELEASE_DIR}/RELEASE-NOTES.md"
