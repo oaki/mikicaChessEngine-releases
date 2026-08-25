@@ -6,7 +6,7 @@ private; no source code is published here.
 
 ## Latest stable release
 
-Download [`v0.3.0`](https://github.com/oaki/mikicaChessEngine-releases/releases/tag/v0.3.0).
+Download the [latest stable release](https://github.com/oaki/mikicaChessEngine-releases/releases/latest).
 
 Available packages:
 
